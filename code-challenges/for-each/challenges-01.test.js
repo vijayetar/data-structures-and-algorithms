@@ -116,9 +116,16 @@ The inventory is formatted like this:
 
 This function should use forEach to populate your grocery list based on the store's inventory. If the item is available, add it to your list. Return the final list.
 ------------------------------------------------------------------------------------------------ */
-
 const createList = (availableItems) => {
-  // Solution code here...
+  const newList = [];
+  availableItems.forEach((element) => 
+    { 
+      if (element.available === true) {
+      newList.push(element.name);
+      };
+    }
+  )
+  return newList;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -136,7 +143,17 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
+  const output = [];
+  arr.forEach((value) => {
+    const threediv = value % 3;
+    const fivediv = value % 5;
+    if (threediv === 0 && fivediv === 0) { output.push("Fizz Buzz"); }
+    else if (fivediv === 0 ) {output.push("Buzz"); }
+    else if (threediv === 0) {output.push("Fizz");}
+    else {output.push(value)};
+  }
+  )
+  return output;
 };
 
 /* ------------------------------------------------------------------------------------------------
