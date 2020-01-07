@@ -156,6 +156,7 @@ const fizzbuzz = (arr) => {
   return output;
 };
 
+// completed all 7 challenges
 /* ------------------------------------------------------------------------------------------------
 TESTS
 
