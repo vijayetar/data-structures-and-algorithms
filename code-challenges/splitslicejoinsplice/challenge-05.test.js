@@ -15,6 +15,8 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
+  let regex = /./g;
+  
   let splitstr = str.split("");
   while (splitstr != []) {splitstr.shift();
   result.push(splitstr.shift())};
