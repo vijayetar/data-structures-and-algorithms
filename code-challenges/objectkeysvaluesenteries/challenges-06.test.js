@@ -95,12 +95,15 @@ const hasChildrenValues = (arr, character) => {
   // needs to iterate through the object to find the matching character name
   // then check the corresponding value of the children
   // then using an if statement determine the return value
+
+  let output = null;
   arr.forEach((obj) => {
     if (Object.values(obj)[0] === character) {
-      if (Object.values(obj)[2].length !== 0) {return 'true';}
-      else {return 'false';}}
+      if (Object.values(obj)[2].length !== 0) {output = true}
+    }  
   });
-};
+  return output;
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
