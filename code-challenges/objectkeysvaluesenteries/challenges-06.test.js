@@ -91,7 +91,15 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
-
+  //function takes in array and character name
+  // needs to iterate through the object to find the matching character name
+  // then check the corresponding value of the children
+  // then using an if statement determine the return value
+  arr.forEach((obj) => {
+    if (Object.values(obj)[0] === character) {
+      if (Object.values(obj)[2].length !== 0) {return true;}
+      else {return false;}}
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -103,7 +111,18 @@ The input and output of this function are the same as the input and output from 
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenEntries = (arr, character) => {
-  // Solution code here...
+  arr.forEach((obj) => {
+    if (Object.entries(obj)[0][1]=== character) {
+      // console.log('thisis the character we found', Object.entries(obj)[0][1]);
+      if (Object.entries(obj)[2][1].length === 0) {
+        // console.log('thisis what is the length',Object.entries(obj)[2][1]);
+        return false;
+      } else {
+        // console.log('not sure what happened');
+        return true;
+      }
+    }
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,7 +132,14 @@ Write a function named totalCharacters that takes in an array and returns the nu
 ------------------------------------------------------------------------------------------------ */
 
 const totalCharacters = (arr) => {
-  // Solution code here...
+  let people = [];
+  arr.forEach((obj) => {
+    people.push(obj.name);
+    // console.log(obj.name, obj.spouse, obj.children);
+    if (obj.spouse !== null) {people.push(obj.spouse)};
+    people = people.concat(obj.children);
+  })
+ return people.length;
 };
 
 /* ------------------------------------------------------------------------------------------------
