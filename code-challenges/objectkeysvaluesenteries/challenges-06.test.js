@@ -97,8 +97,8 @@ const hasChildrenValues = (arr, character) => {
   // then using an if statement determine the return value
   arr.forEach((obj) => {
     if (Object.values(obj)[0] === character) {
-      if (Object.values(obj)[2].length !== 0) {return true;}
-      else {return false;}}
+      if (Object.values(obj)[2].length !== 0) {return 'true';}
+      else {return 'false';}}
   });
 };
 
@@ -110,17 +110,32 @@ Write a function named hasChildrenEntries that is similar to your hasChildrenVal
 The input and output of this function are the same as the input and output from challenge 3.
 ------------------------------------------------------------------------------------------------ */
 
+// const hasChildrenEntries = (arr, character) => {
+//   arr.forEach((obj) => {
+//     if (Object.entries(obj)[0][1]=== character) {
+//       // console.log('thisis the character we found', Object.entries(obj)[0][1]);
+//       if (Object.entries(obj)[2][1].length === 0) {
+//         // console.log('thisis what is the length',Object.entries(obj)[2][1]);
+//         return 'false';
+//       } else {
+//         // console.log('not sure what happened');
+//         return 'true';
+//       }
+//     }
+//   })
+// };
+
 const hasChildrenEntries = (arr, character) => {
   arr.forEach((obj) => {
     if (Object.entries(obj)[0][1]=== character) {
       // console.log('thisis the character we found', Object.entries(obj)[0][1]);
-      if (Object.entries(obj)[2][1].length === 0) {
+      return (Object.entries(obj)[2][1]); 
         // console.log('thisis what is the length',Object.entries(obj)[2][1]);
-        return false;
-      } else {
-        // console.log('not sure what happened');
-        return true;
-      }
+      //   return 'false';
+      // } else {
+      //   // console.log('not sure what happened');
+      //   return 'true';
+      // }
     }
   })
 };
@@ -154,9 +169,18 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 
 const houseSize = (arr) => {
   const sizes = [];
-  // Solution code here...
+  arr.forEach((obj) => {
+    const place = new Object();
+    place.house = obj.house;
+    if (obj.spouse !== null) {
+      place.members = obj.name.split().concat(obj.spouse.split()).concat(obj.children).length;
+    } else {
+      place.members = obj.name.split().concat(obj.children).length;
+    }
+    sizes.push(place);
+  })
   return sizes;
-};
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
@@ -178,9 +202,20 @@ const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 
 const houseSurvivors = (arr) => {
   const survivors = [];
-  // Solution code here...
+  arr.forEach((obj) => {
+    const place = new Object();
+    place.house = obj.house;
+    if (obj.spouse === null) {place.members = obj.name.split().concat(obj.children).length;
+    } 
+    else {
+    deceasedSpouses.forEach((str) => {
+      if (obj.spouse === str) {place.members = obj.name.split().concat(obj.children).length;}
+    })
+    }
+    survivors.push(place);
+  })
   return survivors;
-};
+}
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
