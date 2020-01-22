@@ -53,8 +53,21 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
-};
+  let anotherArray = [];
+  input.forEach((arr) => {
+      const newArray = [];
+      arr.filter(num => {
+        console.log('this is num before if statement', num);
+        if(typeof(num) ==='string'){return anotherArray; }
+        if(num % 5 === 0 ) {
+          newArray.push(num);
+        }
+      });
+        anotherArray.push(newArray);
+  })
+  const thisArray = anotherArray.map(arr => arr.map(num => Math.pow(2,num)));
+  return thisArray;
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -118,9 +131,19 @@ let starWarsData = [{
   gender: 'female'
 }];
 
-let findMaleAndFemale = (data) => {
-  // Solution code here...
-};
+let findMaleAndFemale = (arraydata) => {
+  let str= '';
+  for (let i = 0; i<arraydata.length; i++){
+    if (arraydata[i].gender === 'male'|| arraydata[i].gender === 'female') {
+      if (i === 0){
+        str += arraydata[i].name; 
+      } else {
+        str = str + ' and ' + arraydata[i].name
+      } 
+    }
+  }
+    return str;
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -128,9 +151,14 @@ CHALLENGE 5
 Write a function named findShortest that, given the Star Wars data from Challenge 6, uses any combination of filter, map and reduce to return the name of the shortest character.
 ------------------------------------------------------------------------------------------------ */
 
-let findShortest = (data) => {
-  // Solution code here...
-};
+
+  let findShortest = (data) => {
+    data.sort(function (a,b) {
+      return a.height - b.height;
+    })
+    return data[0].name;
+  };
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS
