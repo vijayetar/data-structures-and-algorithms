@@ -116,12 +116,12 @@ Here is an example of the input:
 This data could be sorted by name or price.
 ------------------------------------------------------------------------------------------------ */
 
-const sortBy = (property, arr) => {
-  arr.sort((a,b) => {
-    a.property - b.property;
-    });
+  const sortBy = (property, arr) => {
+    arr.sort((a,b) => {
+      return Math.floor(a.property) > Math.floor(b.property);
+    })
     return arr;
-};
+  }
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -136,7 +136,8 @@ https://secure.com returns true because the URL is secure
 https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
-// Solution code here...
+  let regEx = /^(https:\/\/)[a-zA-Z0-9]{1,}(.com|.org)/
+  return regEx.test(url);
 };
 
 /* ------------------------------------------------------------------------------------------------
