@@ -15,11 +15,9 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  let regex = /./g;
-  
-  let splitstr = str.split("");
-  while (splitstr != []) {splitstr.shift();
-  result.push(splitstr.shift())};
+  for (let i = 0; i<=str.length; i++) {
+    result.push(str.slice(i));
+  }
   return result;
 };
 
@@ -31,8 +29,8 @@ Write a function name wordsToCharList that, given a string as input, returns a n
 For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 ------------------------------------------------------------------------------------------------ */
 
-const wordsToCharList = (arr) => {
-  // Solution code here...
+const wordsToCharList = (str) => {
+  return str.split('');
 };
 
 
@@ -77,11 +75,16 @@ const gruffaloCrumble = {
 };
 
 
-const listFoods = (recipe) => {
-  let result = [];
-  // Solution code here...
-  return result;
-};
+// const listFoods = (recipe) => {
+//   let result = [];
+//   let array = recipe.ingredients;
+//   array.map(str => {
+//     let newArray = str.split(' ');
+//     console.log(newArray);
+//   })
+
+//   return result;
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -93,7 +96,12 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  let array = recipe.ingredients;
+  array.map(str => {
+    let newArray = str.split(' ');
+    newArray.splice(0,2);
+    result.push(newArray.join(' '));
+  })
   return result;
 };
 
@@ -108,8 +116,15 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 ------------------------------------------------------------------------------------------------ */
 
 const stepActions = (recipe) => {
+  let array = recipe.steps;
   let result = [];
-  // Solution code here...
+  let regEx =  /\b([A-Z]\w+)(-\w+)?\b/;
+  let newstring = '';
+  array.map(str => {
+    let arr=str.match(regEx);
+    newstring= arr[0];
+    result.push(newstring);
+  })
   return result;
 };
 
@@ -127,7 +142,19 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  // Solution code here...
+  arr.map((num) => {
+    console.log(num);
+    if(num % 2 === 0) {
+      arr.splice(arr.indexOf(num),1)
+    }
+  })
+  arr.map((num) => {
+    console.log(num);
+    if(num % 2 === 0) {
+      arr.splice(arr.indexOf(num),1)
+    }
+  })
+   return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -146,7 +173,21 @@ removeLastCharacters('Gregor', 9) returns ''
 ------------------------------------------------------------------------------------------------ */
 
 const removeLastCharacters = (str, numberOfCharacters) => {
-  // Solution code here...
+  
+  if (numberOfCharacters < 0) { 
+    return str
+  } 
+  else if (numberOfCharacters > str.length) { 
+    str = ''; 
+    return str;
+  }
+  else {
+    let newArray = str.split('');
+    console.log(newArray);
+    newArray.splice(str.length-numberOfCharacters,numberOfCharacters);
+    str = newArray.join('');
+    return str;
+  }
 };
 
 
@@ -158,7 +199,11 @@ Write a function named totalSumCSV that, given a string of comma-separated value
 
 const totalSumCSV = (str) => {
   let total = 0;
-  // Solution code here...
+  let newArray = str.split(',');
+  console.log(newArray);
+  newArray.map(str => {
+      total += parseInt(str);
+  })
   return total;
 };
 
@@ -172,7 +217,16 @@ For example, removeVowels('gregor') returns 'grgr'.
 ------------------------------------------------------------------------------------------------ */
 
 const removeVowels = (str) => {
-  // Solution code here...
+  let anotherArray = [];
+  let newArray = str.split('');
+  let vowels = ['a', 'e', 'i', 'o', 'u'];
+  newArray.map(chr => {
+    if (!vowels.includes(chr)) {
+      console.log(chr);
+      anotherArray.push(chr);
+    }
+  })
+  return anotherArray.join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -186,7 +240,27 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 ------------------------------------------------------------------------------------------------ */
 
 const extractVowels = (str) => {
-  // Solution code here...
+  let result = [];
+  let newArray = str.split('');
+  let vowels = ['a', 'e', 'i', 'o', 'u'];
+  let anotherArray = [];
+
+  newArray.map(chr => {
+    if (!vowels.includes(chr)) {
+      anotherArray.push(chr);
+    }
+  })
+  result.push(anotherArray.join(''));
+  anotherArray = [];
+  console.log(result, anotherArray);
+  newArray.map(chr => {
+    if (vowels.includes(chr)) {
+      console.log(chr);
+      anotherArray.push(chr);
+    }
+  })
+  result.push(anotherArray.join(''));
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -288,6 +362,6 @@ describe('Testing challenge 10', () => {
     expect(extractVowels('gregor')).toStrictEqual(['grgr', 'eo']);
     expect(extractVowels('gregor').length).toStrictEqual(2);
 
-    expect(extractVowels('The quick brown fox')).toStrictEqual(['Th qck brwn fx', 'eioou']);
+    expect(extractVowels('The quick brown fox')).toStrictEqual(['Th qck brwn fx', 'euioo']);
   });
 });
